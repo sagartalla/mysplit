@@ -1,0 +1,25 @@
+<div class="bill_form_container">
+  <h1>Add Bill</h1>
+  <%= form_for(@bill, html: {role: "form"}) do |f| %>
+
+    <div class="field form-group">
+      <%= f.label :item %>
+      <%= f.text_field :item, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :amount %>
+      <%= f.text_field :amount, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <label>Paid By</label>
+      <%=select(:bill, :user_id, @members.all.collect {|m| [ m.name, m.id ] })%>
+    </div>
+
+    <span class="actions">
+      <%= f.submit "Update", class: "btn btn-default" %>
+    </span>
+
+  <% end %>
+</div>

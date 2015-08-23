@@ -1,0 +1,30 @@
+<% if @groups.size == 0 %>
+  <h1>Create a New Group</h1>
+<% else %>
+  <h1>Groups Owned By You</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Summary</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td><%= group.name%></td>
+          <td><%= group.summary%></td>
+          <td><%= group.updated_at%></td>
+          <td>
+            <%= link_to "Add Bill", new_group_bill_path(group), class: "btn btn-default btn-xs btn-primary"%> 
+            <%= link_to "View", group_path(group), class: "btn btn-default btn-xs btn-success" %>
+            <%= link_to "Delete", group_path(group), class: "btn btn-default btn-xs btn-danger",:method => :delete, :confirm => "Are you sure ?" %>
+          </td>
+        </tr>  
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "New Group", new_group_path, class: "btn btn-default btn-lg" %>

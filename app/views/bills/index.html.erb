@@ -1,0 +1,28 @@
+<% if @bills.size == 0 %>
+  <p>No bills in this group, please add bill</p>
+<% else %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Ammount</th>
+        <th>Paid By</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bills.each do |bill| %>
+        <tr>
+          <td><%=bill.updated_at %></td>
+          <td><%=bill.item %></td>
+          <td><%=number_to_currency(bill.amount, :unit => "Rs") %></td>
+          <td><%=bill.paid_by.name %></td>
+          <td><%=link_to "Edit", edit_bill_path(bill) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "Add Bill", new_group_bill_path, class: "btn btn-primary btn-lg" %>
+<%= link_to "Show Split", show_split_group_path(params[:group_id]), class: "btn btn-success btn-lg" %>

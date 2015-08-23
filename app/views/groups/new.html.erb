@@ -1,0 +1,29 @@
+<div class="group_form_container">
+  <h1>New Group</h1>
+
+  <%= form_for(:group, url: groups_path, html: {role: "form"}) do |f| %>
+
+    <div class="field form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :summary %>
+      <%= f.text_area :summary, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <label>Add Members</label>
+      <%=select_tag "members", options_from_collection_for_select(@users, "id", "name"),  multiple: true %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Create", class: "btn btn-default" %>
+    </div>
+
+  <% end %>
+</div>
+<script type="text/javascript">
+  $("#members").multiSelect();
+</script>

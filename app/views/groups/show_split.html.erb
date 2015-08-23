@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>node_1</th>
+      <th>node_2</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @share_report.each do |row| %>
+      <tr>
+        <td><%=row[:node_1] %></td>
+        <td><%=row[:node_2] %></td>
+        <td><%=row[:weight] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
