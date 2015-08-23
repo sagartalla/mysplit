@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   
-  before_action :is_member?
+  before_action :is_member
 
   def index
     @bills = Group.find(params[:group_id]).bills
@@ -33,7 +33,7 @@ private
     params.require(:bill).permit(:item, :amount, :user_id)
   end
   
-  def is_member?
+  def is_member
     group = params[:group_id] ? Group.find(params[:group_id]) : Bill.find(params[:id]).group
     unless group.users.exists?(current_user)
       flash[:error] = "You are not a member of the group"
